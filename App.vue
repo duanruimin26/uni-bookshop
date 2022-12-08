@@ -1,18 +1,12 @@
 <script>
-	export default {
-		onLaunch: function() {
-			console.log('App Launch')
-		},
-		onShow: function() {
-			console.log('App Show')
-		},
-		onHide: function() {
-			console.log('App Hide')
-		}
-	}
+export default {
+	onLaunch: function() {},
+	onShow: function() {},
+	onHide: function() {}
+};
 </script>
 
 <style lang="scss">
-	/*每个页面公共css */
-	@import "./uni_modules/vk-uview-ui/index.scss";
+/*每个页面公共css */
+@import './uni_modules/vk-uview-ui/index.scss';
 </style>

@@ -5,16 +5,97 @@
 			"style": {
 				"navigationBarTitleText": "首页"
 			}
+		}, {
+			"path": "pages/center/center",
+			"style": {
+				"navigationBarTitleText": "个人中心"
+			}
+
+		}, {
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "购物车",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/goods/goods",
+			"style": {
+				"navigationBarTitleText": "商品",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/auth/login",
+			"style": {
+				"navigationBarTitleText": "登录",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/auth/register",
+			"style": {
+				"navigationBarTitleText": "注册",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/baseInfo",
+			"style": {
+				"navigationBarTitleText": "修改个人信息",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/goods/show",
+			"style": {
+				"navigationBarTitleText": "商品详情",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/order/orderPreview",
+			"style": {
+				"navigationBarTitleText": "订单预览",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/addressList",
+			"style": {
+				"navigationBarTitleText": "地址列表",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/addressNew",
+			"style": {
+				"navigationBarTitleText": "新建地址",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/center/collection",
+			"style": {
+				"navigationBarTitleText": "商品收藏",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/order/orderList",
+			"style": {
+				"navigationBarTitleText": "我的订单",
+				"enablePullDownRefresh": false
+			}
+
+		}, {
+			"path": "pages/order/orderInfo",
+			"style": {
+				"navigationBarTitleText": "订单详情",
+				"enablePullDownRefresh": false
+			}
 		}
-        ,{
-            "path" : "pages/center/center",
-            "style" :                                                                                    
-            {
-                "navigationBarTitleText": "个人中心"
-            }
-            
-        }
-    ],
+	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "图书商城",
@@ -23,18 +104,32 @@
 	},
 	"uniIdRouter": {},
 	"tabBar": {
-		"color": "#909399",
-		"selectedColor":"#303133",
+		"color": "#333333",
+		"selectedColor": "#0736f4",
 		"borderStyle": "white",
 		"backgroundColor": "",
-		"list": [
-			{
+		"list": [{
 				"pagePath": "pages/index/index",
+				"iconPath": "static/icon/h.png",
+				"selectedIconPath": "static/icon/ha.png",
 				"text": "首页"
+			}, {
+				"pagePath": "pages/goods/goods",
+				"iconPath": "static/icon/g.png",
+				"selectedIconPath": "static/icon/ga.png",
+				"text": "商品"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"iconPath": "static/icon/c.png",
+				"selectedIconPath": "static/icon/ca.png",
+				"text": "购物车"
 			},
 			{
 				"pagePath": "pages/center/center",
-				"text": "我"
+				"iconPath": "static/icon/m.png",
+				"selectedIconPath": "static/icon/ma.png",
+				"text": "我的"
 			}
 		]
 	}
