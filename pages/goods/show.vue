@@ -89,57 +89,57 @@ export default {
 			goodsId: null,
 			isCollect: 0,
 			cartCount: 0
-		};
+		}
 	},
 	onLoad(option) {
-		this.goodsId = option.id;
-		this.getData();
-		this.getCartCount();
+		this.goodsId = option.id
+		this.getData()
+		this.getCartCount()
 	},
 	methods: {
 		async getData() {
-			const res = await this.$u.api.goodsInfo(this.goodsId);
-			this.goodsInfo = res.goods;
-			this.commentList = res.goods.comments;
-			this.list[1].count = res.goods.comments.length;
-			this.goodsList = res.like_goods;
-			this.isCollect = res.goods.is_collect;
+			const res = await this.$u.api.goodsInfo(this.goodsId)
+			this.goodsInfo = res.goods
+			this.commentList = res.goods.comments
+			this.list[1].count = res.goods.comments.length
+			this.goodsList = res.like_goods
+			this.isCollect = res.goods.is_collect
 		},
 		change(index) {
-			this.current = index;
+			this.current = index
 		},
 		// 收藏商品
 		async collect() {
 			// 请求收藏API
-			await this.$u.api.goodsCollect(this.goodsId);
+			await this.$u.api.goodsCollect(this.goodsId)
 			// 收藏成功之后，提示消息，改变收藏状态
 			if (this.isCollect === 0) {
-				this.$u.toast('收藏成功');
-				this.isCollect = 1;
+				this.$u.toast('收藏成功')
+				this.isCollect = 1
 			} else {
-				this.$u.toast('取消收藏');
-				this.isCollect = 0;
+				this.$u.toast('取消收藏')
+				this.isCollect = 0
 			}
 		},
 		// 加入购物车
 		async addCart() {
 			const params = {
 				goods_id: this.goodsId
-			};
-			await this.$u.api.cartAdd(params);
+			}
+			await this.$u.api.cartAdd(params)
 
 			//提示消息
-			this.$u.toast('添加成功');
+			this.$u.toast('添加成功')
 			//重新获取购物车数据
-			this.getCartCount();
+			this.getCartCount()
 		},
 		// 获取购物车数量
 		async getCartCount() {
-			const token = this.vuex_token;
+			const token = this.vuex_token
 
 			if (token) {
-				const res = await this.$u.api.cartList();
-				this.cartCount = res.data.length;
+				const res = await this.$u.api.cartList()
+				this.cartCount = res.data.length
 			}
 		},
 		// 跳转到购物车
@@ -147,10 +147,10 @@ export default {
 			this.$u.route({
 				url: '/pages/cart/cart',
 				type: 'switchTab'
-			});
+			})
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

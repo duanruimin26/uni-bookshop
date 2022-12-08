@@ -66,7 +66,7 @@ export default {
 						validator: (rule, value, callback) => {
 							// 上面有说，返回true表示校验通过，返回false表示不通过
 							// this.$u.test.mobile()就是返回true或者false的
-							return this.$u.test.mobile(value);
+							return this.$u.test.mobile(value)
 						},
 						message: '手机号码不正确',
 						trigger: ['change', 'blur']
@@ -93,40 +93,40 @@ export default {
 			city: '',
 			area: '',
 			addressId: ''
-		};
+		}
 	},
 	computed: {
 		defaultRegion() {
 			const defaultRegionArr =
-				this.province && this.city && this.area ? [this.province, this.city, this.area] : [];
-			return defaultRegionArr;
+				this.province && this.city && this.area ? [this.province, this.city, this.area] : []
+			return defaultRegionArr
 		}
 	},
 	onReady() {
-		this.$refs.uForm.setRules(this.rules);
+		this.$refs.uForm.setRules(this.rules)
 	},
 	onLoad(option) {
 		if (option) {
-			this.addressId = option.id;
-			this.getData(option.id);
+			this.addressId = option.id
+			this.getData(option.id)
 		}
 	},
 	methods: {
 		async getData(id) {
-			const res = await this.$u.api.addressInfo(id);
+			const res = await this.$u.api.addressInfo(id)
 			this.form = {
 				...res
-			};
-			this.form.region = res.province + '-' + res.city + '-' + res.county;
-			this.province = res.province;
-			this.city = res.city;
-			this.area = res.county;
+			}
+			this.form.region = res.province + '-' + res.city + '-' + res.county
+			this.province = res.province
+			this.city = res.city
+			this.area = res.county
 		},
 		regionConfirm(e) {
-			this.form.region = e.province.name + '-' + e.city.name + '-' + e.area.name;
-			this.province = e.province.name;
-			this.city = e.city.name;
-			this.area = e.area.name;
+			this.form.region = e.province.name + '-' + e.city.name + '-' + e.area.name
+			this.province = e.province.name
+			this.city = e.city.name
+			this.area = e.area.name
 		},
 		submit() {
 			this.$refs.uForm.validate(async valid => {
@@ -137,28 +137,28 @@ export default {
 						city: this.city,
 						county: this.area,
 						is_default: this.form.is_default ? 1 : 0
-					};
-					delete params.region;
+					}
+					delete params.region
 
 					// 新增地址
 					if (!this.addressId) {
-						await this.$u.api.addressNew(params);
-						this.$u.toast('新增地址成功');
+						await this.$u.api.addressNew(params)
+						this.$u.toast('新增地址成功')
 					} else {
-						await this.$u.api.addressUpdate(this.addressId, params);
-						this.$u.toast('修改地址成功');
+						await this.$u.api.addressUpdate(this.addressId, params)
+						this.$u.toast('修改地址成功')
 					}
 
 					setTimeout(() => {
 						this.$u.route({
 							url: '/pages/center/addressList'
-						});
-					}, 1500);
+						})
+					}, 1500)
 				}
-			});
+			})
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

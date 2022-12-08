@@ -25,27 +25,34 @@ export default {
 				]
 			},
 			errorType: ['message']
-		};
+		}
 	},
 	onReady() {
-		this.$refs.uForm.setRules(this.rules);
-		this.form.name = this.vuex_user.name;
+		this.$refs.uForm.setRules(this.rules)
+		this.form.name = this.vuex_user.name
 	},
 	methods: {
 		submit() {
 			this.$refs.uForm.validate(async valid => {
 				if (valid) {
 					// 更新用户信息
-					await this.$u.api.userInfoUpdate(this.form);
+					await this.$u.api.userInfoUpdate(this.form)
 					// 刷新用户信息，更新vuex_user
-					this.$u.utils.updateUser();
+					this.$u.utils.updateUser()
 
-					this.$u.toast('更新成功');
+					this.$u.toast('更新成功')
+
+					setTimeout(() => {
+						this.$u.route({
+							url: '/pages/center/center',
+							type: 'switchTab'
+						})
+					}, 1500)
 				}
-			});
+			})
 		}
 	}
-};
+}
 </script>
 
 <style></style>

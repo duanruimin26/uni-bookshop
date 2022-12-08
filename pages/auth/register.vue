@@ -25,31 +25,31 @@ export default {
 			email: '',
 			password: '',
 			password_confirmation: ''
-		};
+		}
 	},
 	computed: {
 		inputStyle() {
-			let style = {};
+			let style = {}
 			if (this.name && this.email && this.password && this.password_confirmation) {
-				style.color = '#fff';
-				style.backgroundColor = this.$u.color['warning'];
+				style.color = '#fff'
+				style.backgroundColor = this.$u.color['warning']
 			}
-			return style;
+			return style
 		}
 	},
 	methods: {
 		async submit() {
 			if (!this.name || !this.email || !this.password || !this.password_confirmation) {
-				this.$u.toast('表单填写不完整');
-				return;
+				this.$u.toast('表单填写不完整')
+				return
 			}
 			if (!this.$u.test.email(this.email)) {
-				this.$u.toast('邮箱格式错误');
-				return;
+				this.$u.toast('邮箱格式错误')
+				return
 			}
 			if (this.password !== this.password_confirmation) {
-				this.$u.toast('密码不一致');
-				return;
+				this.$u.toast('密码不一致')
+				return
 			}
 
 			// 处理登录用的参数
@@ -58,23 +58,23 @@ export default {
 				email: this.email,
 				password: this.password,
 				password_confirmation: this.password_confirmation
-			};
+			}
 			try {
-				const res = await this.$u.api.authRegister(params);
+				const res = await this.$u.api.authRegister(params)
 
-				this.$u.toast('注册成功');
+				this.$u.toast('注册成功')
 
 				// 注册成功之后，重定向到登录页
 				setTimeout(() => {
 					this.$u.route({
 						url: 'pages/auth/login',
 						type: 'redirectTo'
-					});
-				}, 1500);
+					})
+				}, 1500)
 			} catch (e) {}
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

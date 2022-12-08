@@ -19,45 +19,45 @@ export default {
 	data() {
 		return {
 			email: ''
-		};
+		}
 	},
 	computed: {
 		inputStyle() {
-			let style = {};
+			let style = {}
 			if (this.$u.test.email(this.email) && this.password) {
-				style.color = '#fff';
-				style.backgroundColor = this.$u.color['warning'];
+				style.color = '#fff'
+				style.backgroundColor = this.$u.color['warning']
 			}
-			return style;
+			return style
 		}
 	},
 	methods: {
 		async submit() {
-			if (!this.$u.test.email(this.email) || !this.password) return;
+			if (!this.$u.test.email(this.email) || !this.password) return
 			// 处理登录用的参数
 			const params = {
 				email: this.email,
 				password: this.password
-			};
+			}
 			// 请求API，执行登录
-			const loginRes = await this.$u.api.authLogin(params);
+			const loginRes = await this.$u.api.authLogin(params)
 			// 缓存token
-			this.$u.vuex('vuex_token', loginRes.access_token);
-			this.$u.toast('登录成功');
+			this.$u.vuex('vuex_token', loginRes.access_token)
+			this.$u.toast('登录成功')
 			// 刷新用户信息，更新vuex_user
-			this.$u.utils.updateUser();
+			this.$u.utils.updateUser()
 			// 登录之后，跳转到来源页
-			const backUrl = uni.getStorageSync('back_url') || 'pages/index/index';
+			const backUrl = uni.getStorageSync('back_url') || 'pages/index/index'
 
 			setTimeout(() => {
 				this.$u.route({
 					url: backUrl,
 					type: 'reLaunch'
-				});
-			}, 1500);
+				})
+			}, 1500)
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

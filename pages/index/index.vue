@@ -43,45 +43,45 @@ export default {
 			goodsList: [],
 			page: 1,
 			loading: false
-		};
+		}
 	},
 	onLoad() {
-		this.getData();
+		this.getData()
 	},
 	methods: {
 		changeSort(index) {
-			this.currentSort = index;
-			this.goodsList = [];
-			this.page = 1;
-			this.getData();
+			this.currentSort = index
+			this.goodsList = []
+			this.page = 1
+			this.getData()
 		},
 		// 获取数据
 		async getData() {
-			this.loading = true;
+			this.loading = true
 			const params = {
 				page: this.page
-			};
+			}
 			if (this.currentSort == 1) {
-				params.sales = 1;
+				params.sales = 1
 			}
 			if (this.currentSort == 2) {
-				params.recommend = 1;
+				params.recommend = 1
 			}
 			if (this.currentSort == 3) {
-				params.new = 1;
+				params.new = 1
 			}
-			const res = await this.$u.api.index(params);
-			this.loading = false; //隐藏骨架屏
-			this.slides = res.slides;
-			this.goodsList = [...this.goodsList, ...res.goods.data];
+			const res = await this.$u.api.index(params)
+			this.loading = false //隐藏骨架屏
+			this.slides = res.slides
+			this.goodsList = [...this.goodsList, ...res.goods.data]
 		}
 	},
 	onReachBottom() {
 		// 重新请求数据，带上分页参数
-		this.page = this.page + 1;
-		this.getData();
+		this.page = this.page + 1
+		this.getData()
 	}
-};
+}
 </script>
 
 <style></style>

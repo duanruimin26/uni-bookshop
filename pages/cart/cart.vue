@@ -68,95 +68,95 @@ export default {
 			cartList: [],
 			cartId: '',
 			show: false
-		};
+		}
 	},
 	computed: {
 		allCheck: {
 			get() {
-				return this.cartList.length > 0 && this.cartList.every(item => item.is_checked);
+				return this.cartList.length > 0 && this.cartList.every(item => item.is_checked)
 			},
 			set(val) {
-				this.checkAll(val);
+				this.checkAll(val)
 			}
 		},
 		totalPrice() {
-			let price = 0;
+			let price = 0
 			this.cartList
 				.filter(item => item.is_checked)
 				.forEach(cell => {
-					price += cell.goods.price * cell.num;
-				});
-			return price.toFixed(2);
+					price += cell.goods.price * cell.num
+				})
+			return price.toFixed(2)
 		},
 		isEmpty() {
-			return this.cartList.filter(item => item.is_checked).length === 0;
+			return this.cartList.filter(item => item.is_checked).length === 0
 		}
 	},
 	onLoad() {
-		this.$u.utils.isLogin();
+		this.$u.utils.isLogin()
 	},
 	onShow() {
-		this.getData();
+		this.getData()
 	},
 	methods: {
 		async getData() {
 			const res = await this.$u.api.cartList({
 				include: 'goods'
-			});
-			this.cartList = res.data;
+			})
+			this.cartList = res.data
 		},
 		del(id) {
-			this.cartId = id;
-			this.show = true;
+			this.cartId = id
+			this.show = true
 		},
 		async confirm() {
-			const res = await this.$u.api.cartDel(this.cartId);
-			this.$u.toast('移除商品成功');
-			this.getData();
+			const res = await this.$u.api.cartDel(this.cartId)
+			this.$u.toast('移除商品成功')
+			this.getData()
 		},
 		async changeCheck(val) {
-			let cart_ids = [];
+			let cart_ids = []
 			this.cartList.forEach(item => {
 				if (item.is_checked) {
-					cart_ids.push(item.id);
+					cart_ids.push(item.id)
 				}
-			});
-			const { name, value } = val;
+			})
+			const { name, value } = val
 			if (value) {
-				cart_ids.push(name);
+				cart_ids.push(name)
 			} else {
-				cart_ids.splice(cart_ids.indexOf(name), 1);
+				cart_ids.splice(cart_ids.indexOf(name), 1)
 			}
 			await this.$u.api.cartChecked({
 				cart_ids
-			});
-			this.getData();
+			})
+			this.getData()
 		},
 		async checkAll(val) {
-			let cart_ids = [];
+			let cart_ids = []
 			if (val) {
 				this.cartList.forEach(item => {
-					cart_ids.push(item.id);
-				});
+					cart_ids.push(item.id)
+				})
 			}
 			await this.$u.api.cartChecked({
 				cart_ids
-			});
-			this.getData();
+			})
+			this.getData()
 		},
 		async numChange(item) {
 			await this.$u.api.cartNum(item.id, {
 				num: item.num
-			});
+			})
 		},
 		goSettle() {
 			this.$u.route({
 				url: '/pages/order/orderPreview',
 				type: 'navigateTo'
-			});
+			})
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

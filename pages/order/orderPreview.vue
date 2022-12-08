@@ -45,56 +45,56 @@ export default {
 			addressList: [],
 			site: {},
 			select_address_id: ''
-		};
+		}
 	},
 	onLoad() {},
 	onShow() {
-		this.select_address_id = uni.getStorageSync('select_address_id');
-		this.getData();
+		this.select_address_id = uni.getStorageSync('select_address_id')
+		this.getData()
 	},
 	computed: {
 		totalPrice() {
-			let price = 0;
+			let price = 0
 			this.carts.forEach(cell => {
-				price += cell.goods.price * cell.num;
-			});
-			return price.toFixed(2);
+				price += cell.goods.price * cell.num
+			})
+			return price.toFixed(2)
 		}
 	},
 	methods: {
 		async getData() {
-			const res = await this.$u.api.orderPreview();
-			this.carts = res.carts;
-			this.addressList = res.address;
+			const res = await this.$u.api.orderPreview()
+			this.carts = res.carts
+			this.addressList = res.address
 			if (this.select_address_id) {
-				this.site = this.addressList.filter(item => item.id === this.select_address_id)[0];
-				uni.setStorageSync('select_address_id', '');
+				this.site = this.addressList.filter(item => item.id === this.select_address_id)[0]
+				uni.setStorageSync('select_address_id', '')
 			} else {
-				this.site = this.addressList.filter(item => item.is_default)[0];
+				this.site = this.addressList.filter(item => item.is_default)[0]
 			}
 		},
 		async submitOrder() {
 			const params = {
 				address_id: this.site.id
-			};
-			const res = await this.$u.api.orderSubmit(params);
-			this.goPay(res.id);
+			}
+			const res = await this.$u.api.orderSubmit(params)
+			this.goPay(res.id)
 		},
 		async goPay(orderId) {
 			const params = {
 				type: 'aliyun'
-			};
-			const res = await this.$u.api.orderPaytest(orderId, params);
-			this.$u.toast('支付成功');
+			}
+			const res = await this.$u.api.orderPaytest(orderId, params)
+			this.$u.toast('支付成功')
 			setTimeout(() => {
 				this.$u.route({
 					url: '/pages/order/orderList',
 					type: 'redirectTo'
-				});
-			}, 1500);
+				})
+			}, 1500)
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

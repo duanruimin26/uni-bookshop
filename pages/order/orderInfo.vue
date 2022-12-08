@@ -90,53 +90,53 @@ export default {
 				}
 			},
 			showModal: false
-		};
+		}
 	},
 	onLoad(option) {
-		this.orderId = option.id;
-		this.getData();
+		this.orderId = option.id
+		this.getData()
 	},
 	computed: {
 		totalNum() {
-			let num = 0;
+			let num = 0
 			if (this.orderInfo.orderDetails) {
 				num = this.orderInfo.orderDetails.data.reduce((prev, next) => {
-					return prev + next.num;
-				}, 0);
+					return prev + next.num
+				}, 0)
 			}
-			return num;
+			return num
 		},
 		orderStatusObj() {
-			return this.orderStatus[this.orderInfo.status] || {};
+			return this.orderStatus[this.orderInfo.status] || {}
 		}
 	},
 	methods: {
 		async getData() {
 			const params = {
 				include: 'orderDetails.goods,address'
-			};
-			const res = await this.$u.api.orderInfo(this.orderId, params);
-			this.orderInfo = res;
-			this.site = res.address;
-			this.goodsArr = res.orderDetails.data;
+			}
+			const res = await this.$u.api.orderInfo(this.orderId, params)
+			this.orderInfo = res
+			this.site = res.address
+			this.goodsArr = res.orderDetails.data
 		},
 		async goPay() {
 			// this.showModal = true;
 			const params = {
 				type: 'aliyun'
-			};
+			}
 			// const res = await this.$u.api.orderPay(this.orderId, params) //这里请求二维码接口后台报错
-			const res = await this.$u.api.orderPaytest(this.orderId, params);
-			this.$u.toast('支付成功');
+			const res = await this.$u.api.orderPaytest(this.orderId, params)
+			this.$u.toast('支付成功')
 			setTimeout(() => {
 				this.$u.route({
 					url: '/pages/order/orderList',
 					type: 'redirectTo'
-				});
-			}, 1500);
+				})
+			}, 1500)
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

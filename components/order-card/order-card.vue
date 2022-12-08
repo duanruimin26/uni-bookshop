@@ -53,13 +53,13 @@ export default {
 		orderList: {
 			type: Array,
 			default() {
-				return [];
+				return []
 			}
 		},
 		loadStatus: {
 			type: String,
 			default() {
-				return '';
+				return ''
 			}
 		}
 	},
@@ -90,19 +90,19 @@ export default {
 					color: 'error'
 				}
 			}
-		};
+		}
 	},
 	methods: {
 		// 总件数
 		totalNum(item) {
-			let num = 0;
+			let num = 0
 			item.map(val => {
-				num += val.num;
-			});
-			return num;
+				num += val.num
+			})
+			return num
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>
@@ -176,7 +176,7 @@ export default {
 
 .centre {
 	text-align: center;
-	margin: 200rpx auto;
+	padding-top: 200rpx;
 	font-size: 32rpx;
 
 	image {

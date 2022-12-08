@@ -65,31 +65,31 @@ export default {
 			keyword: '',
 			page: 1,
 			isLast: false // 是否是最后一页
-		};
+		}
 	},
 	computed: {},
 	onLoad() {
-		this.getData();
+		this.getData()
 	},
 	methods: {
 		async getData() {
 			const params = {
 				page: this.page,
 				title: this.keyword
-			};
-			if (this.current) params.category_id = this.current;
-			const res = await this.$u.api.goodsList(params);
-			this.categories = res.categories.slice(-4);
-			this.goodsList = [...this.goodsList, ...res.goods.data];
-			this.isLast = res.goods.next_page_url ? false : true;
+			}
+			if (this.current) params.category_id = this.current
+			const res = await this.$u.api.goodsList(params)
+			this.categories = res.categories.slice(-4)
+			this.goodsList = [...this.goodsList, ...res.goods.data]
+			this.isLast = res.goods.next_page_url ? false : true
 		},
 		// 点击左边的栏目切换
 		async swichMenu(cid) {
-			if (cid == this.current) return;
-			this.current = cid;
-			this.page = 1;
-			this.goodsList = [];
-			this.getData();
+			if (cid == this.current) return
+			this.current = cid
+			this.page = 1
+			this.goodsList = []
+			this.getData()
 			// // 如果为0，意味着尚未初始化
 			// if (this.menuHeight == 0 || this.menuItemHeight == 0) {
 			// 	await this.getElRect('menu-scroll-view', 'menuHeight');
@@ -101,7 +101,7 @@ export default {
 		// 获取一个目标元素的高度
 		getElRect(elClass, dataVal) {
 			new Promise((resolve, reject) => {
-				const query = uni.createSelectorQuery().in(this);
+				const query = uni.createSelectorQuery().in(this)
 				query
 					.select('.' + elClass)
 					.fields(
@@ -112,29 +112,29 @@ export default {
 							// 如果节点尚未生成，res值为null，循环调用执行
 							if (!res) {
 								setTimeout(() => {
-									this.getElRect(elClass);
-								}, 10);
-								return;
+									this.getElRect(elClass)
+								}, 10)
+								return
 							}
-							this[dataVal] = res.height;
+							this[dataVal] = res.height
 						}
 					)
-					.exec();
-			});
+					.exec()
+			})
 		},
 		searchGoods() {
-			this.page = 1;
-			this.goodsList = [];
-			this.getData();
+			this.page = 1
+			this.goodsList = []
+			this.getData()
 		},
 		// 右侧区域滚动到底部加载下一页
 		scrollEvent(e) {
-			if (this.isLast) return;
-			this.page = this.page + 1;
-			this.getData();
+			if (this.isLast) return
+			this.page = this.page + 1
+			this.getData()
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

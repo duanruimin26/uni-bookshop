@@ -16,14 +16,14 @@ export default {
 		goods: {
 			type: Object,
 			default() {
-				return {};
+				return {}
 			}
 		}
 	},
 	data() {
-		return {};
+		return {}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

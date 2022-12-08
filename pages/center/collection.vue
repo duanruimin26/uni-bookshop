@@ -23,28 +23,28 @@ export default {
 			collectionList: [], // 收藏数据列表
 			page: 1,
 			loading: false
-		};
+		}
 	},
 	onLoad() {
-		this.getData();
+		this.getData()
 	},
 	onReachBottom() {
 		// 重新请求数据，带上分页参数
-		this.page = this.page + 1;
-		this.getData();
+		this.page = this.page + 1
+		this.getData()
 	},
 	methods: {
 		async getData() {
-			this.loading = true;
+			this.loading = true
 			const params = {
 				page: this.page
-			};
-			const res = await this.$u.api.goodsCollects(params);
-			this.loading = false;
-			this.collectionList = [...this.collectionList, ...res.data];
+			}
+			const res = await this.$u.api.goodsCollects(params)
+			this.loading = false
+			this.collectionList = [...this.collectionList, ...res.data]
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

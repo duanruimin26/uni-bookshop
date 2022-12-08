@@ -51,35 +51,35 @@ export default {
 				}
 			],
 			from: ''
-		};
+		}
 	},
 	onLoad(option) {
-		this.from = option.from;
-		this.getData();
+		this.from = option.from
+		this.getData()
 	},
 	methods: {
 		async getData() {
-			this.siteList = [];
-			const res = await this.$u.api.addressList();
-			this.siteList = res.data;
+			this.siteList = []
+			const res = await this.$u.api.addressList()
+			this.siteList = res.data
 		},
 		toAddSite() {
 			this.$u.route({
 				url: '/pages/center/addressNew'
-			});
+			})
 		},
 		async click(id, index) {
 			// 设为默认
 			if (index === 0) {
-				await this.$u.api.addressDefault(id);
-				this.$u.toast('设置成功');
+				await this.$u.api.addressDefault(id)
+				this.$u.toast('设置成功')
 			} else if (index == 1) {
-				await this.$u.api.addressDelete(id);
-				this.$u.toast('删除成功');
+				await this.$u.api.addressDelete(id)
+				this.$u.toast('删除成功')
 			}
 			this.$nextTick(() => {
-				this.getData();
-			});
+				this.getData()
+			})
 		},
 		toEdit(id) {
 			this.$u.route({
@@ -87,18 +87,18 @@ export default {
 				params: {
 					id
 				}
-			});
+			})
 		},
 		contentClick(id) {
 			if (this.from === 'orderpreview') {
-				uni.setStorageSync('select_address_id', id);
+				uni.setStorageSync('select_address_id', id)
 				this.$u.route({
 					type: 'navigateBack'
-				});
+				})
 			}
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss" scoped>

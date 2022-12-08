@@ -31,53 +31,53 @@ export default {
 	data() {
 		return {
 			show: true
-		};
+		}
 	},
 	onLoad() {
-		this.$u.utils.isLogin();
+		this.$u.utils.isLogin()
 	},
 	methods: {
 		toBaseInfo() {
 			this.$u.route({
 				url: '/pages/center/baseInfo'
-			});
+			})
 		},
 		toAddress() {
 			this.$u.route({
 				url: '/pages/center/addressList'
-			});
+			})
 		},
 		toCollection() {
 			this.$u.route({
 				url: '/pages/center/collection'
-			});
+			})
 		},
 		toOrder() {
 			this.$u.route({
 				url: '/pages/order/orderList'
-			});
+			})
 		},
 		// 退出登录
 		async logout() {
 			// 请求API，退出登录
-			await this.$u.api.authLogout();
+			await this.$u.api.authLogout()
 
-			this.$u.toast('退出成功');
+			this.$u.toast('退出成功')
 
 			setTimeout(() => {
 				//跳转到首页
 				this.$u.route({
 					type: 'reLaunch',
 					url: 'pages/index/index'
-				});
-			}, 1500);
+				})
+			}, 1500)
 
 			// 清除缓存的token和用户信息
-			this.$u.vuex('vuex_token', null);
-			this.$u.vuex('vuex_user', {});
+			this.$u.vuex('vuex_token', null)
+			this.$u.vuex('vuex_user', {})
 		}
 	}
-};
+}
 </script>
 
 <style lang="scss">
