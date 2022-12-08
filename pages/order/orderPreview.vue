@@ -78,11 +78,9 @@ export default {
 				address_id: this.site.id
 			};
 			const res = await this.$u.api.orderSubmit(params);
-			console.log('res', res);
 			this.goPay(res.id);
 		},
 		async goPay(orderId) {
-			console.log('orderId', orderId);
 			const params = {
 				type: 'aliyun'
 			};

@@ -45,8 +45,8 @@
 				立即付款
 			</u-button>
 		</view>
-
-		<u-modal
+		<!-- 跳出支付二维码 -->
+		<!-- <u-modal
 			v-model="showModal"
 			ref="uModal"
 			:show-title="false"
@@ -55,7 +55,7 @@
 			width="360"
 		>
 			<view class="u-text-center"><u-image width="360rpx" height="360rpx" src="/static/pay.jpg"></u-image></view>
-		</u-modal>
+		</u-modal> -->
 	</view>
 </template>
 
@@ -121,7 +121,7 @@ export default {
 			this.goodsArr = res.orderDetails.data;
 		},
 		async goPay() {
-			this.showModal = true;
+			// this.showModal = true;
 			const params = {
 				type: 'aliyun'
 			};

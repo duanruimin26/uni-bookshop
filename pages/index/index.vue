@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<u-swiper :list="slides" name="img_url" :title="true" :effect3d="true" height="320"></u-swiper>
+		<u-swiper :list="slides" name="img_url" :title="false" :effect3d="true" height="320"></u-swiper>
 		<view class="u-text-center u-m-t-20">
 			<u-tabs
 				:list="sortList"

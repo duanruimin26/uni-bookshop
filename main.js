@@ -36,7 +36,6 @@ import { createSSRApp } from 'vue'
 export function createApp() {
 	const app = createSSRApp(App)
 	app.use(uView).use(httpInterceptor).use(httpApi).mixin(vuexStore).use(store).use(utils)
-	console.log('app', app)
 	return { app }
 }
 // #endif
